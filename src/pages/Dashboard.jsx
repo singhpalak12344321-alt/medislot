@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const [appointments, setAppointments] = useState([]);
@@ -12,30 +13,28 @@ export default function Dashboard() {
     <div className="max-w-7xl mx-auto">
 
       {/* Header */}
-      <div className="mb-6">
-        <h2 className="text-3xl font-bold text-gray-800">Dashboard</h2>
-        <p className="text-gray-500">
-          Welcome back 👋 Here's what's happening today
-        </p>
+      <div className="mb-8 mt-4">
+        <h2 className="text-3xl font-bold">Dashboard</h2>
+        <p className="text-gray-500">Manage your healthcare easily</p>
       </div>
 
       {/* Stats */}
-      <div className="grid md:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
+      <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="bg-white p-6 rounded-2xl shadow">
           <p className="text-gray-500 text-sm">Total Doctors</p>
-          <h3 className="text-3xl font-bold text-blue-600 mt-2">10+</h3>
+          <h3 className="text-3xl font-bold text-blue-600">10+</h3>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
+        <div className="bg-white p-6 rounded-2xl shadow">
           <p className="text-gray-500 text-sm">Appointments</p>
-          <h3 className="text-3xl font-bold text-green-600 mt-2">
+          <h3 className="text-3xl font-bold text-green-600">
             {appointments.length}
           </h3>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
+        <div className="bg-white p-6 rounded-2xl shadow">
           <p className="text-gray-500 text-sm">Patients</p>
-          <h3 className="text-3xl font-bold text-purple-600 mt-2">
+          <h3 className="text-3xl font-bold text-purple-600">
             {appointments.length}
           </h3>
         </div>
@@ -44,8 +43,8 @@ export default function Dashboard() {
       {/* Layout */}
       <div className="grid md:grid-cols-3 gap-6">
 
-        {/* Recent */}
-        <div className="md:col-span-2 bg-white p-6 rounded-2xl shadow-sm border">
+        {/* Recent Appointments */}
+        <div className="md:col-span-2 bg-white p-6 rounded-2xl shadow">
           <h3 className="text-lg font-semibold mb-4">
             Recent Appointments
           </h3>
@@ -55,60 +54,56 @@ export default function Dashboard() {
               {appointments.slice(0, 4).map((item) => (
                 <div
                   key={item.id}
-                  className="flex justify-between items-center p-3 rounded-xl hover:bg-gray-50"
+                  className="flex justify-between items-center border-b pb-2"
                 >
                   <div>
-                    <p className="font-medium">{item.name}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="font-semibold">{item.name}</p>
+                    <p className="text-gray-500 text-sm">
                       {item.specialization}
                     </p>
                   </div>
 
-                  <span className="text-sm text-gray-400">
+                  <span className="text-gray-400 text-sm">
                     {item.date}
                   </span>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No recent appointments</p>
+            <p className="text-gray-500">No appointments yet</p>
           )}
         </div>
 
-        {/* Actions */}
+        {/* ACTION CARDS (FULL CLICKABLE) */}
         <div className="space-y-6">
 
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-2xl shadow">
+          {/* Doctors */}
+          <Link
+            to="/doctors"
+            className="block bg-blue-600 text-white p-6 rounded-2xl shadow hover:scale-[1.02] transition"
+          >
             <h3 className="text-lg font-semibold mb-2">
               Book Appointment
             </h3>
-            <p className="text-sm mb-4 opacity-90">
-              Find doctors and schedule visits
+            <p className="text-sm opacity-90">
+              Explore doctors →
             </p>
+          </Link>
 
-            <a
-              href="/doctors"
-              className="bg-white text-blue-600 px-4 py-2 rounded-lg"
-            >
-              Explore →
-            </a>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+          {/* Appointments */}
+          <Link
+            to="/appointments"
+            className="block bg-green-600 text-white p-6 rounded-2xl shadow hover:scale-[1.02] transition"
+          >
             <h3 className="text-lg font-semibold mb-2">
               Manage Bookings
             </h3>
-
-            <a
-              href="/appointments"
-              className="bg-green-600 text-white px-4 py-2 rounded-lg"
-            >
-              View
-            </a>
-          </div>
+            <p className="text-sm opacity-90">
+              View appointments →
+            </p>
+          </Link>
 
         </div>
-
       </div>
     </div>
   );
