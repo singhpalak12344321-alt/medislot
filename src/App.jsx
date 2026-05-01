@@ -2,45 +2,51 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Doctors from "./pages/DoctorsPage";
+import Doctors from "./pages/Doctors";
 import Appointments from "./pages/Appointments";
+
 import Layout from "./components/Layout";
-import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
-      <Toaster position="top-right" />
       <Routes>
 
-        {/* Login (no sidebar) */}
+        {/* Public Route */}
         <Route path="/" element={<Login />} />
 
-        {/* Pages with sidebar */}
+        {/* Protected Routes */}
         <Route
           path="/dashboard"
           element={
-            <Layout>
-              <Dashboard />
-            </Layout>
+            <ProtectedRoute>
+              <Layout>
+                <Dashboard />
+              </Layout>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/doctors"
           element={
-            <Layout>
-              <Doctors />
-            </Layout>
+            <ProtectedRoute>
+              <Layout>
+                <Doctors />
+              </Layout>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/appointments"
           element={
-            <Layout>
-              <Appointments />
-            </Layout>
+            <ProtectedRoute>
+              <Layout>
+                <Appointments />
+              </Layout>
+            </ProtectedRoute>
           }
         />
 
