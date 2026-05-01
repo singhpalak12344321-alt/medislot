@@ -12,12 +12,10 @@ export default function Sidebar() {
   return (
     <div className="h-screen p-5 bg-white border-r flex flex-col">
 
-      {/* Logo */}
       <h1 className="text-2xl font-bold text-blue-600 mb-10">
         MediSlot
       </h1>
 
-      {/* Menu */}
       <div className="flex flex-col gap-3">
         {menu.map((item) => (
           <Link
@@ -36,7 +34,7 @@ export default function Sidebar() {
         ))}
       </div>
 
-      {/* Bottom section */}
+    
       <div className="mt-auto text-sm text-gray-400">
         <p>© MediSlot</p>
       </div>

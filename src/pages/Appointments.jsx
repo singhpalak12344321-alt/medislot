@@ -7,7 +7,7 @@ export default function Appointments() {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("appointments")) || [];
 
-    // add status
+    
     const enriched = data.map((a) => ({
       ...a,
       status: "Confirmed",
@@ -38,10 +38,10 @@ export default function Appointments() {
   return (
     <div className="max-w-7xl mx-auto">
 
-      {/* Header */}
+      
       <h2 className="text-3xl font-bold mb-6">Appointments</h2>
 
-      {/* Stats */}
+      
       <div className="grid md:grid-cols-3 gap-6 mb-6">
         <div className="bg-white p-5 rounded-2xl shadow">
           <p className="text-gray-500 text-sm">Total</p>
@@ -63,7 +63,7 @@ export default function Appointments() {
         </div>
       </div>
 
-      {/* Search */}
+      
       <input
         className="w-full p-3 border rounded-xl mb-6 focus:ring-2 focus:ring-blue-400"
         placeholder="Search appointments..."
@@ -71,7 +71,7 @@ export default function Appointments() {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {/* List */}
+      
       {filtered.length > 0 ? (
         <div className="grid md:grid-cols-2 gap-6">
           {filtered.map((item) => (
@@ -87,7 +87,7 @@ export default function Appointments() {
                 📅 {item.date}
               </p>
 
-              {/* Status */}
+              
               <span
                 className={`text-xs px-3 py-1 rounded-full ${
                   item.status === "Completed"
@@ -98,7 +98,7 @@ export default function Appointments() {
                 {item.status}
               </span>
 
-              {/* Buttons */}
+          
               <div className="flex gap-3 mt-4">
                 {item.status !== "Completed" && (
                   <button
@@ -122,7 +122,7 @@ export default function Appointments() {
       ) : (
         <div className="bg-white p-8 rounded-2xl shadow text-center">
           <p className="text-gray-500 text-lg">
-            No appointments yet 😔
+            No appointments yet 
           </p>
         </div>
       )}
