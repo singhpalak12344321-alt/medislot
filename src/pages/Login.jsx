@@ -9,20 +9,19 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    // ❗ Empty validation
+
     if (!email || !password) {
       alert("Please fill all fields ⚠️");
       return;
     }
 
-    // ❗ Email format check
     if (!email.includes("@")) {
       alert("Enter valid email 📧");
       return;
     }
 
     if (isLogin) {
-      // LOGIN
+    
       const storedUser = JSON.parse(localStorage.getItem("userData"));
 
       if (!storedUser) {
@@ -40,7 +39,7 @@ export default function Login() {
         alert("Invalid Credentials ❌");
       }
     } else {
-      // REGISTER
+    
 
       if (password.length < 4) {
         alert("Password must be at least 4 characters 🔐");
@@ -53,7 +52,7 @@ export default function Login() {
 
       alert("Registered Successfully 🎉");
 
-      // Reset
+  
       setIsLogin(true);
       setEmail("");
       setPassword("");
@@ -69,7 +68,7 @@ export default function Login() {
           {isLogin ? "Login" : "Register"}
         </h2>
 
-        {/* Email */}
+      
         <input
           type="email"
           placeholder="Email"
@@ -78,7 +77,7 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        {/* Password */}
+  
         <input
           type="password"
           placeholder="Password"
@@ -87,7 +86,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        {/* Button */}
+        
         <button
           onClick={handleSubmit}
           className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
@@ -95,7 +94,7 @@ export default function Login() {
           {isLogin ? "Login" : "Register"}
         </button>
 
-        {/* Toggle */}
+        
         <p className="text-center mt-4 text-sm">
           {isLogin ? "Don't have an account?" : "Already have an account?"}
           <span

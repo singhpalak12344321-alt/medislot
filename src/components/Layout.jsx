@@ -2,16 +2,9 @@ import Sidebar from "./Sidebar";
 
 export default function Layout({ children }) {
   return (
-    <div className="flex min-h-screen bg-gray-100">
-
-  
-      <div className="w-64 min-w-[16rem] bg-white border-r">
-        <Sidebar />
-      </div>
-
-      <div className="flex-1 px-8 py-10">
-        {children}
-        </div>
+    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+      <Sidebar />
+      <div className="flex-1 p-6">{children}</div>
     </div>
   );
 }

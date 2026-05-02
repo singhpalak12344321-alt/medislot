@@ -1,42 +1,42 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Sidebar() {
-  const location = useLocation();
-
-  const menu = [
-    { name: "Dashboard", path: "/dashboard", icon: "🏠" },
-    { name: "Doctors", path: "/doctors", icon: "👨‍⚕️" },
-    { name: "Appointments", path: "/appointments", icon: "📅" },
-  ];
+  const navigate = useNavigate();
+  const { dark, setDark } = useTheme();
 
   return (
-    <div className="h-screen p-5 bg-white border-r flex flex-col">
+    <div className="w-64 min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white p-6 flex flex-col justify-between border-r dark:border-gray-700">
 
-      <h1 className="text-2xl font-bold text-blue-600 mb-10">
-        MediSlot
-      </h1>
+      <div>
+        <h2 className="text-xl font-bold mb-6">MediSlot</h2>
 
-      <div className="flex flex-col gap-3">
-        {menu.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition
-              ${
-                location.pathname === item.path
-                  ? "bg-blue-100 text-blue-600 font-semibold"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
-          >
-            <span>{item.icon}</span>
-            {item.name}
-          </Link>
-        ))}
+        <nav className="flex flex-col gap-4">
+          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/doctors">Doctors</NavLink>
+          <NavLink to="/appointments">Appointments</NavLink>
+        </nav>
       </div>
 
-    
-      <div className="mt-auto text-sm text-gray-400">
-        <p>© MediSlot</p>
+      <div className="space-y-3">
+
+        <button
+          onClick={() => setDark(!dark)}
+          className="w-full py-2 rounded bg-gray-800 text-white dark:bg-white dark:text-black"
+        >
+          {dark ? "Light Mode ☀️" : "Dark Mode 🌙"}
+        </button>
+
+        <button
+          onClick={() => {
+            localStorage.removeItem("user");
+            navigate("/");
+          }}
+          className="text-red-500 w-full text-left"
+        >
+          Logout
+        </button>
+
       </div>
 
     </div>
