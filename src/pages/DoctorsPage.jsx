@@ -76,7 +76,7 @@ export default function Doctors() {
       {/* SEARCH + FILTER */}
       <div className="flex flex-col md:flex-row gap-3 mb-6">
 
-        {/* SEARCH INPUT FIXED */}
+        {/* SEARCH INPUT */}
         <input
           type="text"
           placeholder="Search doctor..."
@@ -91,7 +91,7 @@ export default function Doctors() {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        {/* DROPDOWN FIXED */}
+        {/* DROPDOWN */}
         <select
           className="
             p-2 border rounded
